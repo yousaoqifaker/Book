@@ -22,5 +22,19 @@
     <delete id="deleteBook" parameterType="Integer">
         delete from book where id=#{id}
     </delete>
-
+    <!--查询数据数量-->
+    <select id="getTotal" resultType="int">
+        SELECT COUNT(*) FROM book
+    </select>
+    <resultMap id="book" type="book">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="zuo" property="zuo"/>
+        <result column="chu" property="chu"/>
+        <result column="jia" property="jia"/>
+        <result column="birthday" property="birthday"/>
+    </resultMap>
+    <select id="list" resultMap="student">
+        SELECT * FROM book ORDER BY id desc limit #{param1}, #{param2}
+    </select>
 </mapper>

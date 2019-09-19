@@ -2,6 +2,8 @@ package com.qin.dao;
 
 import com.qin.po.Book;
 
+import java.util.List;
+
 /** 
 * @Description: Dao层 
 * @Param:  
@@ -40,4 +42,18 @@ public interface BookDao {
      * @param id
      */
    void deleteBook(Integer id);
+
+    /**
+     * 获取数据条目
+     * @return 获取数量
+     */
+   int getTotal();
+
+    /**
+     * 查询从start开始到的count条数据
+     * @param start 开始
+     * @param count 数量
+     * @return 数据
+     */
+   List<Book>list(int start,int count);
 }
