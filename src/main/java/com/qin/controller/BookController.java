@@ -6,6 +6,7 @@ import com.qin.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,9 @@ import java.util.List;
 @Controller
 @RequestMapping("")
 public class BookController {
-    private BookService bookService;
+
     @Autowired
-    public void setBookService(BookService bookService) {
-        this.bookService = bookService;
-    }
+    private BookService bookService;
 
     @RequestMapping("/addBook")
     public String addBook(HttpServletResponse response, HttpServletRequest request){
@@ -45,7 +44,7 @@ public class BookController {
         bookService.addBook(book);
         return "redirect:listBook";
     }
-    @RequestMapping("listBook")
+    @RequestMapping("/listBook")
     public String listBook(HttpServletRequest request,HttpServletResponse response){
         int start=0;
         int count=10;
@@ -62,5 +61,37 @@ public class BookController {
         request.setAttribute("book",list);
         request.setAttribute("page",page);
         return "listBook";
+    }
+    @RequestMapping("/deleteBook")
+    public String deleteBook(Integer id){
+        bookService.deleteBook(id);
+        return "redirect:listBook";
+    }
+    @RequestMapping("editBook")
+    public ModelAndView editBook(Integer id){
+        ModelAndView mav=new ModelAndView("editBook");
+        Book book=bookService.getBook(id);
+        mav.addObject("book",book);
+        return mav;
+    }
+    @RequestMapping("updateBook")
+    public String updateBook(HttpServletRequest request,HttpServletResponse response){
+        Book book=new Book();
+        int id=Integer.parseInt(request.getParameter("id"));
+        String isbn=request.getParameter("isbn");
+        String name=request.getParameter("name");
+        String zuo=request.getParameter("zuo");
+        String chu=request.getParameter("chu");
+        String jia=request.getParameter("jia");
+        String ce=request.getParameter("ce");
+        book.setId(id);
+        book.setIsbn(isbn);
+        book.setName(name);
+        book.setZuo(zuo);
+        book.setChu(chu);
+        book.setJia(jia);
+        book.setCe(ce);
+        bookService.updateBook(book);
+        return "redirect:listBook";
     }
 }
