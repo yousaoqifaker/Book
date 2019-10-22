@@ -50,8 +50,7 @@
                 <td>${s.ce}</td>
                 <td><a href="${pageContext.request.contextPath}/editBook?id=${s.id}"><span class="glyphicon glyphicon-edit"></span> </a></td>
                 <td><a href="${pageContext.request.contextPath}/deleteBook?id=${s.id}"><span class="glyphicon glyphicon-trash"></span> </a></td>
-                <!-- Large modal -->
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg"><span class="glyphicon glyphicon-plus"></span></button></td>
+                <td><a href="#"> <span class="glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-example-modal-lg"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -50,10 +50,11 @@ public class BookController {
         int count=10;
         try {
             start=Integer.parseInt(request.getParameter("page.start"));
-            count=Integer.parseInt(request.getParameter("page.count"));
+
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+        System.out.println("数量"+count);
         Page page=new Page(start,count);
         List<Book>list=bookService.list(page.getStart(),page.getCount());
         int total=bookService.getTotal();

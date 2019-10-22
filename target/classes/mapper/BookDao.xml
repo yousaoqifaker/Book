@@ -12,7 +12,7 @@
     </insert>
     <!--根据id获取更新书本信息-->
     <select id="getBookDate" parameterType="Integer" resultType="book">
-        select * from book where book.book.id = #{id}
+        select * from book where book.id = #{id}
     </select>
     <!--更新数据-->
     <update id="updateBook" parameterType="book">
